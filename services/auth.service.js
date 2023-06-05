@@ -7,7 +7,7 @@ const { jwtSecret } = require('../env.config');
 class AuthService {
   static async register(data) {
     const { email } = data;
-    const salt = await bcrypt.genSalt(10);
+    const salt = await bcrypt.genSalt(16);
     data.password = await bcrypt.hash(data.password, salt);
     let user = await prisma.user.create({
       data
